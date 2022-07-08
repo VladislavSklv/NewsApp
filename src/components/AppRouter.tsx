@@ -5,7 +5,7 @@ import Login from '../pages/Login';
 import Main from '../pages/Main';
 import News from '../pages/News';
 import Navbar from './Navbar';
-import Profile from './Profile';
+import Profile from '../pages/Profile';
 
 const AppRouter: React.FC = () => {
     const {isAuth} = useContext(AuthContext);
