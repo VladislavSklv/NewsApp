@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchNews } from '../async/FetchNews';
 import { AuthContext } from '../context';
 import Loader from './Loader';
@@ -8,12 +9,7 @@ const NewsList: React.FC = () => {
     const {page} = useContext(AuthContext);
     const [news, setNews]: any = useState([]);
 
-    /* useEffect(() => {
-        response = fetchNews(page, limit)
-        useNews(response);
-    }, [page, limit]); */
-
-   /*  const response = useNews({page, limit}); */
+    const navigate = useNavigate();   
 
     useEffect(() => {
         fetchNews(page, limit)
@@ -25,12 +21,6 @@ const NewsList: React.FC = () => {
             setNews(result);
         })
     }, [page, limit])
-    {/* <div key={art.publishedAt}>
-                        <h3>{art.author}</h3>
-                        <h4>{art.title}</h4>
-                        <div>{art.content}</div>
-                        <div><img style={{width: "100%"}} src={art.urlToImage}/></div>
-                    </div> */}
 
     return (
         <div>
@@ -49,7 +39,7 @@ const NewsList: React.FC = () => {
                                     <p>{art.description}</p>
                                 </div>
                                 <div className="card-action">
-                                    <a href="#">Read</a>
+                                    <a className='curs-point' onClick={() => navigate(`/news/${art.title}`)}>Read</a>
                                 </div>
                                 <div className="card-reveal">
                                     <span className="card-title grey-text text-darken-4"><b>Author: </b>{art.author}<i className="material-icons right">close</i></span>

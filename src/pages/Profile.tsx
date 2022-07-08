@@ -7,7 +7,7 @@ const Profile: React.FC = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext);
     return (
         <div className='pad1rem row'>
-            <Title>Profile</Title>
+            <Title style={{color: '#ef5350'}} className='col offset-l2 offset-xl1'>Profile</Title>
             <h5 style={{marginTop: 0, marginBottom: 30}} className='col m12 l8 offset-l2 xl10 offset-xl1'>This could be your profile page</h5>
             <MyButton 
                 onClick={() =>{

@@ -6,6 +6,7 @@ import Main from '../pages/Main';
 import News from '../pages/News';
 import Navbar from './Navbar';
 import Profile from '../pages/Profile';
+import NewsIDPage from '../pages/NewsIDPage';
 
 const AppRouter: React.FC = () => {
     const {isAuth} = useContext(AuthContext);
@@ -19,6 +20,7 @@ const AppRouter: React.FC = () => {
                     <Route path='/' element={<Main/>}/>
                     <Route path='/profile' element={<Profile />}/>
                     <Route path='/news' element={<News />}/>
+                    <Route path='/news/:title' element={<NewsIDPage />}/>
                     <Route path='/login' element={<Navigate to='/' replace={true}/>}/>
                 </Routes>
                 :
