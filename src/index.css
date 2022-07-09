@@ -22,3 +22,31 @@ code {
 .curs-point{
   cursor: pointer;
 }
+.slidenav-trigger-m{
+  display: none;
+}
+@media(max-width: 992px){
+  .slidenav-trigger-m{
+    display: block;
+  }
+}
+
+@media(max-width: 500px){
+  h1{
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .subtitle{
+    font-size: 19px;
+  }
+  hr{
+    margin: 15px 0;
+  }
+  .card .card-title{
+    font-size: 17px;
+  }
+  .card .card-h5{
+    font-size: 17px;
+  }
+}

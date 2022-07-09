@@ -6,6 +6,7 @@ import { AuthContext } from './context';
 const App: React.FC = () => {
 	const [isAuth, setIsAuth] = useState(false);
 	const [page, setPage] = useState(1);
+	const [query, setQuery] = useState('');
 	
 	useEffect(() => {
 		if(localStorage.getItem('auth')) setIsAuth(true);
@@ -16,6 +17,8 @@ const App: React.FC = () => {
 			setIsAuth,
 			page,
 			setPage,
+			query,
+			setQuery
 		}}>
 			<AppRouter />
 		</AuthContext.Provider>

@@ -22,7 +22,7 @@ const NewsIDPage = () => {
             {article.length != 0 && article[0] != undefined
             ?
             <div className='col s12'>
-                <Title style={{color: '#ef5350'}} className='col center'>{article[0].title}</Title>
+                <Title className='col center'>{article[0].title}</Title>
                 <img className='col s12' src={article[0].urlToImage}/>
                 <h6 className='col s12'><b>Author: </b>{article[0].author}</h6>
                 <h6 className='col s12'><b>Published time: </b>{article[0].publishedAt}</h6>

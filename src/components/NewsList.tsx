@@ -2,32 +2,30 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchNews } from '../async/FetchNews';
 import { AuthContext } from '../context';
+import { useNews } from '../hooks/useNews';
 import Loader from './Loader';
+import SearchQuery from './UI/search-query/SearchQuery';
+import Pagination from './UI/selector/Pagination';
 
 const NewsList: React.FC = () => {
     const [limit, setLimit] = useState(10);
-    const {page} = useContext(AuthContext);
+    const {page, query} = useContext(AuthContext);
     const [news, setNews]: any = useState([]);
+    const [pagesPag, setPagePag]: any = useState([1]);
 
     const navigate = useNavigate();   
 
-    useEffect(() => {
-        fetchNews(page, limit)
-        .then((res: any) => {
-            const result: any = [];
-            res.articles.forEach((article: any) =>{
-                result.push(article);
-            })
-            setNews(result);
-        })
-    }, [page, limit])
+    useNews(setPagePag, setNews, fetchNews, [page, limit, query]);
 
     return (
         <div>
+            <div>
+                <SearchQuery />
+            </div>
             {news.length != 0
                 ?
                 news.map((art: any) => 
-                    <div key={art.publishedAt} className="row">
+                    <div key={art.publishedAt + Math.random()} className="row">
                         <div className="col m12 l8 offset-l2 xl10 offset-xl1">
                             <div className="card hoverable">
                                 <div className="card-image">
@@ -35,7 +33,7 @@ const NewsList: React.FC = () => {
                                     <span style={{zIndex: 2}} className="card-title">{art.title}</span>
                                 </div>
                                 <div className="card-content">
-                                    <h5>{art.author}<i className="material-icons right activator curs-point">more_vert</i></h5>
+                                    <h5 className='card-h5'>{art.author}<i className="material-icons right activator curs-point">more_vert</i></h5>
                                     <p>{art.description}</p>
                                 </div>
                                 <div className="card-action">
@@ -43,7 +41,7 @@ const NewsList: React.FC = () => {
                                 </div>
                                 <div className="card-reveal">
                                     <span className="card-title grey-text text-darken-4"><b>Author: </b>{art.author}<i className="material-icons right">close</i></span>
-                                    <h5 style={{paddingLeft: 0}} className='card-content'>{art.title}</h5>
+                                    <h5 style={{paddingLeft: 0}} className='card-content card-h5'>{art.title}</h5>
                                     <p>Published at: {new Date(art.publishedAt).toLocaleString("en-US", {year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric'})}</p>
                                 </div>
                             </div>
@@ -57,6 +55,7 @@ const NewsList: React.FC = () => {
                     </div>
                 </div>
             }
+            <Pagination style={{padding: 0}} className="pagination col m12 l8 offset-l2 xl10 offset-xl1" pages={pagesPag} />
         </div>
     );
 };
