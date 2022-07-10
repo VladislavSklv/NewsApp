@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems, []);
+        M.AutoInit();
     }, 500);
 });

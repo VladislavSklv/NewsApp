@@ -6,8 +6,8 @@ const SearchQuery = () => {
     const {query, setQuery} = useContext(AuthContext); 
 
     return (
-        <form className='row'>
-            <div style={{border: '2px solid #e63e78', borderRadius: 6, overflow: 'hidden'}} className="input-field col m5 l5 offset-l2 xl5 offset-xl1">
+        <form>
+            <div style={{border: '2px solid #e63e78', borderRadius: 6, overflow: 'hidden'}} className="input-field col s12 offset-m2 m6 l4 offset-l1 xl5 offset-xl2">
                 <input
                     value={query}
                     onChange={(e: any) => setQuery(e.target.value)}

@@ -1,25 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchNews } from '../async/FetchNews';
 import { AuthContext } from '../context';
 import { useNews } from '../hooks/useNews';
 import Loader from './Loader';
 import SearchQuery from './UI/search-query/SearchQuery';
-import Pagination from './UI/selector/Pagination';
+import Pagination from './UI/pagination/Pagination';
+import MySelector from './UI/selector/MySelector';
 
 const NewsList: React.FC = () => {
     const [limit, setLimit] = useState(10);
-    const {page, query} = useContext(AuthContext);
+    const {page, query, selector} = useContext(AuthContext);
     const [news, setNews]: any = useState([]);
     const [pagesPag, setPagePag]: any = useState([1]);
 
     const navigate = useNavigate();   
 
-    useNews(setPagePag, setNews, fetchNews, [page, limit, query]);
+    useNews(setPagePag, setNews, fetchNews, [page, limit, query, selector]);
 
     return (
         <div>
-            <div>
+            <div className='row'>
+                <MySelector />
                 <SearchQuery />
             </div>
             {news.length != 0
