@@ -32,14 +32,14 @@ const NewsList: React.FC = () => {
                             <div className="card hoverable">
                                 <div className="card-image">
                                     <img src={art.urlToImage} />
-                                    <span style={{zIndex: 2}} className="card-title">{art.title}</span>
+                                    <span style={{zIndex: 2}} className="card-title">{art.title.replace(/(\<(\/?[^>]+)>)/g, '')}</span>
                                 </div>
                                 <div className="card-content">
                                     <h5 className='card-h5'>{art.author}<i className="material-icons right activator curs-point">more_vert</i></h5>
-                                    <p>{art.description}</p>
+                                    <p>{art.description.replace(/(\<(\/?[^>]+)>)/g, '')}</p>
                                 </div>
                                 <div className="card-action">
-                                    <a className='curs-point' onClick={() => navigate(`/news/${art.title}`)}>Read</a>
+                                    <a className='curs-point' onClick={() => navigate(`/news/${art.title.replace(/(\<(\/?[^>]+)>)/g, '')}`)}>Read</a>
                                 </div>
                                 <div className="card-reveal">
                                     <span className="card-title grey-text text-darken-4"><b>Author: </b>{art.author}<i className="material-icons right">close</i></span>
